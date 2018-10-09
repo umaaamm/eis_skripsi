@@ -150,9 +150,12 @@
       <!-- Small boxes (Stat box) -->
      <div class="row">
       <div class="col-md-12">
-      <?php 
 
-echo $this->session->flashdata('notif');
+      <?php 
+// if (isset($_SESSION['status']) && $_SESSION['status'] == 'login') {
+
+echo $this->session->flashdata('notif_l');
+// }
 ?>
 </div>
           <?php

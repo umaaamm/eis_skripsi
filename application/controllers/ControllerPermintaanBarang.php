@@ -34,7 +34,8 @@ class ControllerPermintaanBarang extends CI_Controller {
 			$data['nama_barang']=$this->input->post("barang");
 			$data['jumlah']=$this->input->post("jumlah");
 			$data['alasan']=$this->input->post("alasan");
-			
+			$data['s_admin']='0';
+			$data['s_pimpinan']='0';
 			//print_r($data);die;
 			$this->RsModel->TambahData("tbl_barang_baru",$data);
 			$this->session->set_flashdata("notif","<div class='alert alert-success'>Data berhasil ditambah</div>");

@@ -22,11 +22,11 @@ class ControllerVerif extends CI_Controller {
 	{
 		$cek=$this->db->query("select * from tbl_barang_baru where s_admin = '0' ");
 		$num=$cek->num_rows();
-
-		if ($num <= 0) {
-			$databeranda['tampil']=$this->db->query("select * from tbl_barang_baru where s_admin='2'");
+		// print_r($num);die;
+		if ($num >= 0) {
+			$databeranda['tampil']=$this->db->query("select * from tbl_barang_baru where s_admin ='0' and s_pimpinan='0' ");
 		}else{
-			$databeranda['tampil']=$this->db->query("select * from tbl_barang_baru");
+			$databeranda['tampil']=$this->db->query("select * from tbl_barang_baru where s_admin='2'");
 		}
 		$databeranda['hasil_v']=$this->db->query("select * from tbl_barang_baru where s_admin = '1' and s_pimpinan='1'");
 		$databeranda['content']='verif/v_verif_admin';

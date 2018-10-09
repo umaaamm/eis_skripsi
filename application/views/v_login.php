@@ -50,7 +50,7 @@ echo $this->session->flashdata('notif');
 
         <form action="<?php echo base_url()?>CekLogin" method="post">
             <div class="form-group has-feedback">
-                <input type="text" class="form-control" name="username" placeholder="Nama/Username">
+                <input type="text" class="form-control" name="username" placeholder="Username">
                 <span class="glyphicon glyphicon-envelope form-control-feedback"></span>
             </div>
             <div class="form-group has-feedback">

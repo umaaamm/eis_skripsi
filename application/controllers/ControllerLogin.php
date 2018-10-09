@@ -33,7 +33,7 @@ class ControllerLogin extends CI_Controller {
 				'status' => "login"
 				);
 			$this->session->set_userdata($data_session);
-			$this->session->set_flashdata("notif","<div class='alert alert-success'>Selamat Anda Berhasil Login</div>");
+			$this->session->set_flashdata("notif_l","<div class='alert alert-success'>Selamat Anda Berhasil Login</div>");
 				redirect('ControllerUtama');
 			}elseif($lvl=='Pimpinan'){
 				$data_session = array(
@@ -43,11 +43,11 @@ class ControllerLogin extends CI_Controller {
 				'status' => "login"
 				);
 			$this->session->set_userdata($data_session);
-				$this->session->set_flashdata("notif","<div class='alert alert-success'>Selamat Anda Berhasil Login</div>");
+				$this->session->set_flashdata("notif_l","<div class='alert alert-success'>Selamat Anda Berhasil Login</div>");
 				redirect('ControllerUtama');
 				
 			}else{
-				$this->session->set_flashdata("notif","<div class='alert alert-danger'>Password atau Username anda Salah</div>");
+				$this->session->set_flashdata("notif_l","<div class='alert alert-danger'>Password atau Username anda Salah</div>");
 				redirect('Login');
 			}
 
@@ -65,15 +65,15 @@ class ControllerLogin extends CI_Controller {
 				);
 		 
 			$this->session->set_userdata($data_session);
-			$this->session->set_flashdata("notif","<div class='alert alert-success'>Selamat Anda Berhasil Login</div>");
+			$this->session->set_flashdata("notif_l","<div class='alert alert-success'>Selamat Anda Berhasil Login</div>");
 				redirect('ControllerUtama');
 			}else{
-				$this->session->set_flashdata("notif","<div class='alert alert-danger'>Password atau Username anda Salah</div>");
+				$this->session->set_flashdata("notif_l","<div class='alert alert-danger'>Password atau Username anda Salah</div>");
 				redirect('Login');
 			}
 
 		}else{
-			$this->session->set_flashdata("notif","<div class='alert alert-danger'>Password atau Username anda Salah</div>");
+			$this->session->set_flashdata("notif_l","<div class='alert alert-danger'>Password atau Username anda Salah</div>");
 			redirect('Login');
 		}
 	}
