@@ -47,7 +47,7 @@ echo $this->session->flashdata('notif');
 <!-- </div> -->
     <div class="login-box-body">
         <p class="login-box-msg">Sign in to start your session</p>
-
+        <!-- ini aku nambahin kata -->
         <form action="<?php echo base_url()?>CekLogin" method="post">
             <div class="form-group has-feedback">
                 <input type="text" class="form-control" name="username" placeholder="Username">
