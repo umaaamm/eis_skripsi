@@ -76,7 +76,7 @@ class ControllerPermintaanBarang extends CI_Controller {
 	}
 	public function tidak(){
 			$id=$this->uri->segment(3);
-			$this->db->query("update tbl_barang_baru set s_admin='0' where id_barang_baru='".$id."'");
+			$this->db->query("update tbl_barang_baru set s_admin='3' where id_barang_baru='".$id."'");
 			
 			//print_r($where);die;
 			// $this->RsModel->EditData("tbl_barang_keluar",$data,$where);
@@ -96,7 +96,7 @@ class ControllerPermintaanBarang extends CI_Controller {
 	}
 	public function tidak_p(){
 			$id=$this->uri->segment(3);
-			$this->db->query("update tbl_barang_baru set s_pimpinan='0' where id_barang_baru='".$id."'");
+			$this->db->query("update tbl_barang_baru set s_pimpinan='3' where id_barang_baru='".$id."'");
 			
 			//print_r($where);die;
 			// $this->RsModel->EditData("tbl_barang_keluar",$data,$where);
