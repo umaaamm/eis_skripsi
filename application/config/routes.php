@@ -76,6 +76,7 @@ $route['SimpanPermintaanBarangBaru'] ='ControllerPermintaanBarang/simpan';
 $route['VerifAdmin'] ='ControllerVerif';
 $route['VerifPimpinan'] ='ControllerVerif/pimpinan';
 $route['Laporan'] ='ControllerLaporan';
+$route['LaporanFilter'] ='ControllerLaporan/filter';
 $route['Login'] = 'ControllerLogin';
 $route['CekLogin'] = 'ControllerLogin/aksi_login';
 $route['KelolaPermintaanUser'] ='ControllerPermintaan/user';

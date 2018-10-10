@@ -4,7 +4,31 @@
 echo $this->session->flashdata('notif');
 ?>
 </div>
-                        
+    <form role="form" action="<?php echo base_url()?>LaporanFilter" method="post">
+        <div class="col-md-3">
+            <div class="form-group">
+                <label>Tempilkan Bedasarkan Bulan</label>
+                <div id="datetimepicker1" class="input-group date">
+                    <input data-format="yyyy-MM-dd hh:mm:ss" class="form-control" name="tanggal1" type="text"></input>
+                    <span class="input-group-addon add-on">
+                        <i data-time-icon="glyphicon glyphicon-calendar" data-date-icon="glyphicon glyphicon-calendar">
+                      </i>
+                    </span>
+                  </div>
+                <br>
+                <div id="datetimepicker2" class="input-group date">
+                    <input data-format="yyyy-MM-dd hh:mm:ss" class="form-control" name="tanggal2" type="text"></input>
+                    <span class="input-group-addon add-on">
+                        <i data-time-icon="glyphicon glyphicon-calendar" data-date-icon="glyphicon glyphicon-calendar">
+                      </i>
+                    </span>
+                  </div>
+                <br>
+                <button type="submit" name="filter" class="btn btn-primary">Filter</button>
+                
+            </div>
+
+        </div>   
                         <!-- right column -->
                         <div class="col-md-12">
                             <!-- general form elements disabled -->

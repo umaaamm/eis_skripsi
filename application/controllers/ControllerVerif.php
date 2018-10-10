@@ -40,7 +40,7 @@ class ControllerVerif extends CI_Controller {
 		if ($num <= 0) {
 			$databeranda['tampil']=$this->db->query("select * from tbl_barang_baru where s_pimpinan='2'");
 		}else{
-			$databeranda['tampil']=$this->db->query("select * from tbl_barang_baru");
+			$databeranda['tampil']=$this->db->query("select * from tbl_barang_baru where s_pimpinan = '0' and s_admin='1'");
 		}
 		
 		$databeranda['content']='verif/v_verif_pimpinan';

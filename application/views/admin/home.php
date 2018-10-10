@@ -28,6 +28,8 @@
   <!-- bootstrap wysihtml5 - text editor -->
   <link rel="stylesheet" href="<?php echo base_url();?>asset/plugins/bootstrap-wysihtml5/bootstrap3-wysihtml5.min.css">
 
+<link rel="stylesheet" type="text/css" media="screen"
+     href="http://tarruda.github.com/bootstrap-datetimepicker/assets/css/bootstrap-datetimepicker.min.css">
   <!-- DataTables -->
   <link rel="stylesheet" href="<?php echo base_url();?>asset/bower_components/datatables.net-bs/css/dataTables.bootstrap.min.css">
   <link rel="stylesheet" href="<?php echo base_url();?>asset/bower_components/bootstrap-datepicker/dist/css/bootstrap-datepicker.min.css">
@@ -418,7 +420,12 @@ echo $this->session->flashdata('notif_l');
 <script src="<?php echo base_url();?>asset/plugins/timepicker/bootstrap-timepicker.min.js"></script>
 <script src="<?php echo base_url();?>asset/bower_components/ckeditor/ckeditor.js"></script>
 <script src="https://www.w3schools.com/js/myScript1.js"></script>
-
+<script type="text/javascript"
+     src="http://tarruda.github.com/bootstrap-datetimepicker/assets/js/bootstrap-datetimepicker.min.js">
+    </script>
+    <script type="text/javascript"
+     src="http://tarruda.github.com/bootstrap-datetimepicker/assets/js/bootstrap-datetimepicker.pt-BR.js">
+    </script>
 
 <!-- <script src="https://code.jquery.com/jquery-3.3.1.js"></script> -->
 
@@ -474,6 +481,27 @@ echo $this->session->flashdata('notif_l');
                 });
             });
         </script>
+
+        <script type="text/javascript">
+  $('#datepicker').datepicker({
+      autoclose: true
+    })
+  $('#datepicker1').datepicker({
+      autoclose: true
+    })
+</script>
+<script type="text/javascript">
+  $(function() {
+    $('#datetimepicker1').datetimepicker({
+      language: 'pt-BR'
+    });
+  });
+  $(function() {
+    $('#datetimepicker2').datetimepicker({
+      language: 'pt-BR'
+    });
+  });
+</script>
          <script type="text/javascript">
             $(function() {
                 // Replace the <textarea id="editor1"> with a CKEditor
