@@ -101,7 +101,7 @@ echo $this->session->flashdata('notif');
                                     <h3 class="box-title">Data Barang Permintaan</h3>
                                 </div><!-- /.box-header -->
                                 <div class="box-body">
-                                    <table id="Admin" class="table table-bordered table-striped">
+                                    <table id="Admin1" class="table table-bordered table-striped">
                                          <thead>
                                             <tr>
                                                 <th>No</th>
@@ -132,7 +132,10 @@ echo $this->session->flashdata('notif');
                                           <?php }elseif ($key['s_admin'] == '1' && $key['s_pimpinan'] == '1') { ?>
                                                 <td><small class="label bg-green">di Verifikasi oleh Admin dan Pimpinan</small></td>
                                                 <td>-</td>
-                                          <?php  }else{ ?>
+                                          <?php  }elseif($key['s_admin'] == '1' && $key['s_pimpinan'] == '0'){ ?>
+                                                <td><small class="label bg-yellow">Sudah di Verifikasi oleh Admin dan diteruskan ke Pimpinan</small>
+                                                    <td>-</td>
+                                         <?php }else{ ?>
                                                     <td><small class="label bg-red">Permintaan ditolak.</small></td>
                                                      <td><button class="btn btn-danger btn-sm" onclick="hapus('<?php echo $key["id_barang_baru"]; ?>')">Hapus</button>
                                             <!-- <button class="btn btn-info btn-sm" data-toggle="modal" data-target="#mymodal" onclick="edit('<?php echo $key["id_barang_baru"]; ?>','<?php echo $key["nama_peminta"]; ?>','<?php echo $key["nama_barang"]; ?>','<?php echo $key["jumlah"]; ?>','<?php echo $key["alasan"]; ?>')">Edit</button>  -->
