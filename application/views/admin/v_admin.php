@@ -33,7 +33,8 @@ echo $this->session->flashdata('notif');
                                         <div class="form-group">
                                             <label>Bagian</label>
                                             <select class="form-control" name="bagian">
-                                              
+                                                 <option value="-">-- Bagian --</option>
+                                              <option value="pimpinan">Pimpinan</option>
                                                 <option value="operasional">Operasional</option>
                                                 <option value="penjaminan">Penjaminan</option>
                                                 <option value="klaim">Klaim</option>
@@ -92,7 +93,8 @@ echo $this->session->flashdata('notif');
                                          <div class="form-group">
                                             <label>Bagian</label>
                                             <select class="form-control" name="bagian" id="bg">
-                                             
+                                                <option value="-">-- Bagian --</option>
+                                                <option value="pimpinan">Pimpinan</option>
                                                 <option value="operasional">Operasional</option>
                                                 <option value="penjaminan">Penjaminan</option>
                                                 <option value="klaim">Klaim</option>
