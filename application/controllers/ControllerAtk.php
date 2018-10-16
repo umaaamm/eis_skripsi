@@ -47,7 +47,7 @@ class ControllerAtk extends CI_Controller {
 	public function edit(){
 			$where['id_atk']=$this->input->post('id');
 			$data['nama_barang']=$this->input->post("nama");
-			$data['stok']=$this->input->post("stok");
+			// $data['stok']=$this->input->post("stok");
 			
 			//print_r($where);die;
 			$this->RsModel->EditData("tbl_atk",$data,$where);
