@@ -105,6 +105,7 @@
 
             <?php if (isset($_SESSION['level']) && $_SESSION['level'] == "Admin") { ?>
               <li><a href="<?php echo base_url()?>KelolaAdmin"><i class="fa fa-circle-o"></i> Kelola Data Admin</a></li>
+              <li><a href="<?php echo base_url()?>KelolaSuplier"><i class="fa fa-circle-o"></i> Kelola Data Suplier</a></li>
               <li><a href="<?php echo base_url()?>KelolaDivisi"><i class="fa fa-circle-o"></i> Kelola Data Divisi</a></li>
               <li><a href="<?php echo base_url()?>KelolaAtk"><i class="fa fa-circle-o"></i> Kelola Data ATK</a></li>
               <li><a href="<?php echo base_url()?>KelolaBarangMasuk"><i class="fa fa-circle-o"></i> Kelola Data Pembelian Masuk</a></li>
@@ -120,7 +121,7 @@
           <li><a href="<?php echo base_url()?>VerifPimpinan"><i class="fa fa-circle-o"></i> Verifikasi Barang Baru Pimpinan</a></li>
             <li><a href="<?php echo base_url()?>Laporan"><i class="fa fa-circle-o"></i> Kelola Laporan</a></li>
       <?php } ?>
-            <!-- <li class="active"><a href="<?php echo base_url()?>KelolaSuplier"><i class="fa fa-circle-o"></i> Kelola Data Suplier</a></li> -->
+            
             <!-- <li><a href="<?php echo base_url()?>KelolaBarangMasuk"><i class="fa fa-circle-o"></i> Kelola Data Pembelian Masuk</a></li> -->
              <!-- <li><a href="<?php echo base_url()?>KelolaBarangKeluar"><i class="fa fa-circle-o"></i> Kelola Data Keluar/Permintaan</a></li> -->
             <!-- <li><a href="<?php echo base_url()?>KelolaAtk"><i class="fa fa-circle-o"></i> Kelola Data ATK</a></li> -->
