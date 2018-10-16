@@ -31,10 +31,10 @@ from tbl_atk inner join tbl_barang_masuk on tbl_barang_masuk.id_atk = tbl_atk.id
 
 	public function simpan(){
 			$param=$this->input->post("id_atk");
-			// /print_r($param);die;
-			$cari_id = $this->db->query("select * from tbl_atk where id_atk='".$param."'");
+
+			$cari_id = $this->db->query("select * from tbl_persedian where id_atk='".$param."'");
 			$hasil=$cari_id->num_rows();
-			// print_r($hasil);die;
+			
 			if ($hasil <= 0) {
 				$this->session->set_flashdata("notif","<div class='alert alert-success'>Data Tidak Ada di Persediaan, Silahkan Tambahkan di Data Persediaan dengan jumlah awal stok 0.</div>");
 				header('location:'.base_url().'KelolaBarangMasuk');

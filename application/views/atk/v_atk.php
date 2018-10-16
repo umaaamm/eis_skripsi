@@ -18,10 +18,10 @@ echo $this->session->flashdata('notif');
                                             <label>Nama Barang</label>
                                             <input type="text" class="form-control" name="nama" placeholder="Nama" required>
                                         </div>
-                                        <div class="form-group">
+                                     <!--    <div class="form-group">
                                             <label>Stok Awal Barang</label>
                                             <input type="text" class="form-control" name="stok" placeholder="Stok Barang" >
-                                        </div>    
+                                        </div>  -->   
                                     </div>
                                     <div class="box-footer">
                                         <button type="submit" class="btn btn-primary">Submit</button>
@@ -49,10 +49,10 @@ echo $this->session->flashdata('notif');
                                             <label>Nama Barang</label>
                                             <input type="text" class="form-control" name="nama" placeholder="Nama Barang" id="nm">
                                         </div>
-                                        <div class="form-group">
+                                       <!--  <div class="form-group">
                                             <label>Stok Awal Barang</label>
                                             <input type="text" class="form-control" name="stok" placeholder="Stok" id="st">
-                                        </div>
+                                        </div> -->
                                     </div><!-- /.box-body -->
 
                                     <div class="box-footer">
@@ -82,7 +82,7 @@ echo $this->session->flashdata('notif');
                                                 <th>No</th>
 											
                                             <th>Nama Barang</th>
-                                             <th>Stok Awal</th>
+                                             <!-- <th>Stok Awal</th> -->
 											<th>Action</th>
 
                                             </tr>
@@ -95,7 +95,7 @@ echo $this->session->flashdata('notif');
 											<tr>
 											<td><?php echo $a; ?></td>
 											<td><?php echo $key["nama_barang"];?></td>
-                                            <td><?php echo $key["stok"];?></td>
+                                            <!-- <td><?php echo $key["stok"];?></td> -->
 											<td><button class="btn btn-danger btn-sm" onclick="hapus('<?php echo $key["id_atk"]; ?>')">Hapus</button>
                                             <button class="btn btn-info btn-sm" data-toggle="modal" data-target="#mymodal" onclick="edit('<?php echo $key["id_atk"]; ?>','<?php echo $key["nama_barang"]; ?>')">Edit</button> 
 											</tr>

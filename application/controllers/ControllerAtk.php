@@ -28,7 +28,7 @@ class ControllerAtk extends CI_Controller {
 
 	public function simpan(){
 			$data['nama_barang']=$this->input->post("nama");
-			$data['stok']=$this->input->post("stok");
+			// $data['stok']=$this->input->post("stok");
 			
 			//print_r($data);die;
 			$this->RsModel->TambahData("tbl_atk",$data);
