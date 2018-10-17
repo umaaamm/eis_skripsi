@@ -494,12 +494,12 @@ echo $this->session->flashdata('notif_l');
 <script type="text/javascript">
   $(function() {
     $('#datetimepicker1').datetimepicker({
-      language: 'pt-BR'
+      language: 'pt-EN'
     });
   });
   $(function() {
     $('#datetimepicker2').datetimepicker({
-      language: 'pt-BR'
+      language: 'pt-EN'
     });
   });
 </script>
