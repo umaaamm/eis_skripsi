@@ -26,6 +26,7 @@ from tbl_atk inner join tbl_barang_masuk on tbl_barang_masuk.id_atk = tbl_atk.id
 		$databeranda['tampil_suplier']=$this->db->query("select * from tbl_suplier");
 		$databeranda['tampil']=$this->db->query("select * from tbl_barang_masuk");
 		$databeranda['content']='barang_masuk/v_barang_masuk';
+		$databeranda['cek_stok']=$this->db->query("SELECT tbl_atk.*, tbl_persedian.stok_b FROM tbl_atk LEFT JOIN tbl_persedian ON tbl_atk.id_atk = tbl_persedian.id_atk");
 		$this->load->view('admin/home',$databeranda);
 	}
 

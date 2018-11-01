@@ -111,14 +111,14 @@
               <li><a href="<?php echo base_url()?>KelolaBarangMasuk"><i class="fa fa-circle-o"></i> Kelola Data Pembelian Masuk</a></li>
              <li><a href="<?php echo base_url()?>KelolaBarangKeluar"><i class="fa fa-circle-o"></i> Kelola Data Keluar/Permintaan</a></li>
              <li><a href="<?php echo base_url()?>KelolaPersediaan"><i class="fa fa-circle-o"></i> Kelola Data Persediaan</a></li>
-              <li><a href="<?php echo base_url()?>VerifAdmin"><i class="fa fa-circle-o"></i> Verifikasi Barang Baru Admin</a></li>
+              <li><a href="<?php echo base_url()?>VerifAdmin"><i class="fa fa-circle-o"></i>     <small class="label pull-right bg-blue notif"></small> Verif Barang Baru Admin</a></li>
               <li><a href="<?php echo base_url()?>Laporan"><i class="fa fa-circle-o"></i> Kelola Laporan</a></li>
           <?php  }elseif ($_SESSION['level'] == "Biasa") { ?>
             <li><a href="<?php echo base_url()?>KelolaPermintaan"><i class="fa fa-circle-o"></i> Permintaan ATK</a></li>
             <li><a href="<?php echo base_url()?>KelolaPermintaanBarangBaru"><i class="fa fa-circle-o"></i> Permintaan ATK/Barang</a></li>
 
        <?php   }else{ ?>
-          <li><a href="<?php echo base_url()?>VerifPimpinan"><i class="fa fa-circle-o"></i> Verifikasi Barang Baru Pimpinan</a></li>
+          <li><a href="<?php echo base_url()?>VerifPimpinan"><i class="fa fa-circle-o"></i> <small class="label pull-right bg-blue notif_p"></small>Verif Barang Baru Pimpinan</a></li>
             <li><a href="<?php echo base_url()?>Laporan"><i class="fa fa-circle-o"></i> Kelola Laporan</a></li>
       <?php } ?>
             
@@ -491,6 +491,38 @@ echo $this->session->flashdata('notif_l');
       autoclose: true
     })
 </script>
+<script type="text/javascript">
+  var get = function() {
+    $.ajax({
+        type : 'POST',
+        url : '<?php echo base_url();?>ControllerPermintaanBarang/notif',
+        dataType:"json",
+        success : function(data){
+            $('.notif').html(data.notification);
+            // alert(data.notification);
+            var refInterval = window.setTimeout('get()', 2000); // 30 seconds
+        },
+    });
+};
+
+var getp = function() {
+    $.ajax({
+        type : 'POST',
+        url : '<?php echo base_url();?>ControllerPermintaanBarang/notif_p',
+        dataType:"json",
+        success : function(data){
+            $('.notif_p').html(data.notification);
+            // alert(data.notification);
+            var refInterval = window.setTimeout('get()', 2000); // 30 seconds
+        },
+    });
+};
+
+get()
+getp()
+</script>
+
+
 <script type="text/javascript">
   $(function() {
     $('#datetimepicker1').datetimepicker({

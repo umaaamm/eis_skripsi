@@ -105,4 +105,41 @@ class ControllerPermintaanBarang extends CI_Controller {
 
 	}
 
+	public function notif(){
+		$q = $this->db->query("select count(s_admin) as notif from tbl_barang_baru where s_pimpinan='0' and s_admin='0' ")->result_array();
+		// print_r($q['0']['notif']);die;
+		
+		if ($q['0']['notif'] == '0') {
+			$data = array(
+		   'notification' => ''
+			);
+		}else {
+			$data = array(
+		   'notification' => $q['0']['notif']
+		);
+		}
+		
+			echo json_encode($data);
+		// print_r($data);die;
+
+	}
+	public function notif_p(){
+		$q = $this->db->query("select count(s_admin) as notif from tbl_barang_baru where s_pimpinan='0' and s_admin='1' ")->result_array();
+		// print_r($q['0']['notif']);die;
+		
+		if ($q['0']['notif'] == '0') {
+			$data = array(
+		   'notification' => ''
+			);
+		}else {
+			$data = array(
+		   'notification' => $q['0']['notif']
+		);
+		}
+		
+			echo json_encode($data);
+		// print_r($data);die;
+
+	}
+
 }

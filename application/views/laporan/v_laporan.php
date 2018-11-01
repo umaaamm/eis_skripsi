@@ -4,10 +4,44 @@
 echo $this->session->flashdata('notif');
 ?>
 </div>
+ <div class="col-md-12">
+                            <!-- general form elements disabled -->
+                            <div class="box box-primary">
+                                <div class="box-header">
+                                    <h3 class="box-title">Laporan</h3>
+                                </div><!-- /.box-header -->
+                                <div class="box-body">
     <form role="form" action="<?php echo base_url()?>LaporanFilter" method="post">
         <div class="col-md-3">
             <div class="form-group">
-                <label>Tempilkan Bedasarkan Bulan</label>
+                <!-- <label>Pilih Jenis Laporan</label> -->
+               <div class="form-group">
+                                            <label>Pilih Jenis Laporan</label>
+                                            <select class="form-control" name="jenis">
+                                                <option value="-">-- Pilih Jenis Laporan --</option>
+                                                 <option value="LP">Laporan Pembelian</option>
+                                                  <option value="LPE">Laporan Perediaan</option>
+                                                  <option value="LBK">Laporan Barang Keluar</option>
+                                            
+                                            </select>
+                                        </div> 
+
+                                        <div class="form-group">
+                                        
+                  <div class="radio">
+                    <label>
+                      <input type="radio" name="optionsRadios" id="optionsRadios1" value="seluruh">
+                      Seluruh
+                    </label>
+                  </div>
+                  <div class="radio">
+                    <label>
+                      <input type="radio" name="optionsRadios" id="optionsRadios2" value="periode">
+                      Per periode
+                    </label>
+                  </div>
+                </div>
+
                 <div id="datetimepicker1" class="input-group date">
                     <input data-format="yyyy-MM-dd hh:mm:ss" class="form-control" name="tanggal1" type="text"></input>
                     <span class="input-group-addon add-on">
@@ -24,13 +58,21 @@ echo $this->session->flashdata('notif');
                     </span>
                   </div>
                 <br>
-                <button type="submit" name="filter" class="btn btn-primary">Filter</button>
+                <button type="submit" name="filter" class="btn btn-primary">Lihat</button>
+                 <!-- <button type="submit" name="cetak" class="btn btn-primary">Cetak</button> -->
                 
             </div>
 
-        </div>   
+    
+</div>
+
                         <!-- right column -->
-                        <div class="col-md-12">
+
+
+                        <?php
+                        // print_r($flag);
+                        if (isset($flag) && $flag == "pembelian") { ?>
+                           <div class="col-md-12">
                             <!-- general form elements disabled -->
                             <div class="box box-primary">
                                 <div class="box-header">
@@ -69,7 +111,9 @@ echo $this->session->flashdata('notif');
                             </div><!-- /.box -->
                            </div>
                        <!--  </div>/.col (right)  -->
-                       <div class="col-md-12">
+                       
+                   <?php }elseif (isset($flag) && $flag == "persediaan") { ?>
+                           <div class="col-md-12">
                             <!-- general form elements disabled -->
                             <div class="box box-primary">
                                 <div class="box-header">
@@ -105,6 +149,7 @@ echo $this->session->flashdata('notif');
                                 </div><!-- /.box-body -->
                             </div><!-- /.box -->
                            </div>
+                    <?php }elseif (isset($flag) && $flag == "keluar") { ?>
                            <div class="col-md-12">
                             <!-- general form elements disabled -->
                             <div class="box box-primary">
@@ -146,6 +191,10 @@ echo $this->session->flashdata('notif');
                                 </div><!-- /.box-body -->
                             </div><!-- /.box -->
                            </div>
+                       <?php } ?>
+
+                        
+                           
                        
 
 <script type="text/javascript">
