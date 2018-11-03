@@ -2,6 +2,18 @@
 <?php 
 
 echo $this->session->flashdata('notif');
+// print_r($tampil_div['0']['divisi']);die;
+$tahun = date('Y');
+$mont = date('m');
+$rand=rand(2,100000);
+if ($tampil_div['0']['divisi']=='operasional') {
+     $kode_p ="OP".$rand."/".$mont."/".$tahun;
+}elseif ($tampil_div['0']['divisi']=='penjaminan') {
+     $kode_p="PJ".$rand."/".$mont."/".$tahun;
+}elseif ($tampil_div['0']['divisi']=='klaim') {
+      $kode_p="KL".$rand."/".$mont."/".$tahun;
+}
+
 ?>
 </div>
                         <div class="col-md-4">
@@ -15,6 +27,14 @@ echo $this->session->flashdata('notif');
                                    
                                     <div class="box-body">
                                         <div class="form-group">
+                                            <label>Kode Permintaan</label>
+                                            <input type="text" value="<?php echo $kode_p ?>" class="form-control" name="id_k" placeholder="" required readonly>
+                                        </div>
+                                        <div class="form-group">
+                                            <label>Nama Peminta</label>
+                                            <input type="text" value="<?php echo $_SESSION['nama'] ?>" class="form-control" name="nama" placeholder="Nama Peminta Barang" required readonly>
+                                        </div>
+                                        <!-- <div class="form-group">
                                             <label>Nama Barang</label>
                                             <select class="form-control" name="id_atk">
                                                 <option value="-">-- Nama Barang --</option>
@@ -25,19 +45,38 @@ echo $this->session->flashdata('notif');
                                                     <option value="<?php echo $keyy['id_atk'];?>"><?php echo $keyy['nama_barang'];?></option>
                                                 <?php } ?>
                                             </select>
-                                        </div>
-                                            <div class="form-group">
-                                            <label>Nama Peminta</label>
-                                            <input type="text" class="form-control" name="nama" placeholder="Nama Peminta Barang" required>
-                                        </div>
+                                        </div> -->
+
+                                        <div class="form-group">
+                                            <label>Nama Barang</label>
+                                            
+                                                <?php
+                                                    
+                                                    $jsArray = "var prdName = new Array();\n";
+                                                    echo '
+                                                          <select name="id_atk" class="form-control" onchange="document.getElementById(\'prd_name\').value = prdName[this.value]">
+                                                   ';
+                                                     foreach ($cek_stok->result_array() as $key => $row) {
+                                                    
+                                                   echo '
+                                                  <option value="' . $row['id_atk'] . '">' . $row['nama_barang'] . '</option>';
+                                                   $jsArray .= "prdName['" . $row['id_atk'] . "'] = '" . addslashes($row['stok_b']) . "';\n";
+                                                     }
+                                                     echo '
+                                                     </select>';
+                                                  ?>
+                                                  
+                                           <!--  </select> -->
+                                        </div> 
+                                            
                                         
                                         <div class="form-group">
                                             <label>Bagian/Divisi</label>
                                             <select class="form-control" name="bagian">
                                                 <option value="-">-- Bagian/Divisi --</option>
-                                                 <option value="operasional">Operasional</option>
-                                                <option value="penjaminan">Penjaminan</option>
-                                                <option value="klaim">Klaim</option>
+                                               <option <?php if( $tampil_div['0']['divisi']=='operasional'){echo "selected"; } ?> value="operasional">Operasional</option> 
+                                                <option <?php if( $tampil_div['0']['divisi']=='penjaminan'){echo "selected"; } ?>  value="penjaminan">Penjaminan</option>
+                                                <option <?php if( $tampil_div['0']['divisi']=='klaim'){echo "selected"; } ?> value="klaim">Klaim</option>
                                               <!-- <?php foreach($tampil_suplier->result_array() as $keyy)
                                               {
                                                 ?>
@@ -47,7 +86,14 @@ echo $this->session->flashdata('notif');
                                             </select>
                                         </div>
                                         <div class="form-group">
-                                            <label>Jumlah</label>
+                                            <label>Stok Tersedia</label>
+                                            <input type="text" id="prd_name" class="form-control" name="jumlah_s" placeholder="Stok Tersedia" readonly>
+                                        </div>
+                                          <script type="text/javascript">
+                                                    <?php echo $jsArray; ?>
+                                                    </script>   
+                                         <div class="form-group">
+                                            <label>Jumlah Yang Diajukan</label>
                                             <input type="text" class="form-control" name="jumlah" placeholder="Nama Peminta Barang" required>
                                         </div>
                                     </div>
@@ -130,7 +176,7 @@ echo $this->session->flashdata('notif');
                                          <thead>
                                             <tr>
                                                 <th>No</th>
-                                           
+                                           <th>Kode Permintaan</th>
                                             <th>Nama Barang</th>
                                              <th>Nama</th>
                                               <th>Bagian</th>
@@ -147,6 +193,7 @@ echo $this->session->flashdata('notif');
                                             ?>
                                             <tr>
                                             <td><?php echo $a; ?></td>
+                                            <td><?php echo $key["kode_permintaan"];?></td>
                                             <td><?php echo $key["nama_barang"];?></td>
                                             <td><?php echo $key["nama_peminta"];?></td> 
                                             <td><?php echo $key["bagian"];?></td>

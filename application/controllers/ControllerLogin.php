@@ -55,12 +55,16 @@ class ControllerLogin extends CI_Controller {
  			foreach($cek1->result() as $key){
 				$lvl1 = $key->level;
 				$nama_bagian = $key->nama_bagian;
+				$bagian=$key->divisi;
+				$id_bagian=$key->id_bagian;
 			}
  			if($lvl1=='Biasa'){
 				$data_session = array(
 				'username' => $username,
 				'level'=> $lvl1,
+				'bagian'=>$bagian,
 				'nama'=>$nama_bagian,
+				'id_bagian'=>$id_bagian,
 				'status' => "login"
 				);
 		 

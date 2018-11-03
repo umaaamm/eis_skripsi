@@ -20,7 +20,7 @@ class ControllerBarangKeluar extends CI_Controller {
 	 */
 	public function index()
 	{
-		$databeranda['hasil_g']=$this->db->query("select tbl_atk.nama_barang,tbl_barang_keluar.id_atk,tbl_barang_keluar.nama_peminta,tbl_barang_keluar.bagian,tbl_barang_keluar.jumlah,tbl_barang_keluar.tanggal_keluar,tbl_barang_keluar.id_barang_keluar from tbl_atk inner join tbl_barang_keluar on tbl_barang_keluar.id_atk = tbl_atk.id_atk");
+		$databeranda['hasil_g']=$this->db->query("select tbl_barang_keluar.kode_permintaan,tbl_atk.nama_barang,tbl_barang_keluar.id_atk,tbl_barang_keluar.nama_peminta,tbl_barang_keluar.bagian,tbl_barang_keluar.jumlah,tbl_barang_keluar.tanggal_keluar,tbl_barang_keluar.id_barang_keluar from tbl_atk inner join tbl_barang_keluar on tbl_barang_keluar.id_atk = tbl_atk.id_atk");
 		$databeranda['tampil_atk']=$this->db->query("select * from tbl_atk");
 		$databeranda['tampil_suplier']=$this->db->query("select * from tbl_suplier");
 		$databeranda['tampil']=$this->db->query("select * from tbl_barang_keluar");
@@ -38,7 +38,7 @@ class ControllerBarangKeluar extends CI_Controller {
 				$this->session->set_flashdata("notif","<div class='alert alert-success'>Stok Hanya ".$hasil[0]['stok_b']." Tidak Mencukupi.</div>");
 				header('location:'.base_url().'KelolaBarangKeluar');
 			}else{
-			
+			$data['kode_permintaan']=$this->input->post("id_k");
 			$data['id_atk']=$this->input->post("id_atk");
 			$data['nama_peminta']=$this->input->post("nama");
 			$data['bagian']=$this->input->post("bagian");

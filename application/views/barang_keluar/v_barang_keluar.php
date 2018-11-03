@@ -17,7 +17,7 @@ echo $this->session->flashdata('notif');
                                          <thead>
                                             <tr>
                                                 <th>No</th>
-                                           
+                                             <th>Kode Permintaan</th>
                                             <th>Nama Barang</th>
                                              <th>Nama</th>
                                               <th>Bagian</th>
@@ -34,6 +34,7 @@ echo $this->session->flashdata('notif');
                                             ?>
                                             <tr>
                                             <td><?php echo $a; ?></td>
+                                            <td><?php echo $key["kode_permintaan"];?></td>
                                             <td><?php echo $key["nama_barang"];?></td>
                                             <td><?php echo $key["nama_peminta"];?></td> 
                                             <td><?php echo $key["bagian"];?></td>

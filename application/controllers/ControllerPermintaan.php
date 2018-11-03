@@ -20,10 +20,12 @@ class ControllerPermintaan extends CI_Controller {
 	 */
 	public function index()
 	{
-		$databeranda['hasil_g']=$this->db->query("select tbl_atk.nama_barang,tbl_barang_keluar.id_atk,tbl_barang_keluar.nama_peminta,tbl_barang_keluar.bagian,tbl_barang_keluar.jumlah,tbl_barang_keluar.tanggal_keluar,tbl_barang_keluar.id_barang_keluar from tbl_atk inner join tbl_barang_keluar on tbl_barang_keluar.id_atk = tbl_atk.id_atk");
+		$databeranda['hasil_g']=$this->db->query("select tbl_barang_keluar.kode_permintaan,tbl_atk.nama_barang,tbl_barang_keluar.id_atk,tbl_barang_keluar.nama_peminta,tbl_barang_keluar.bagian,tbl_barang_keluar.jumlah,tbl_barang_keluar.tanggal_keluar,tbl_barang_keluar.id_barang_keluar from tbl_atk inner join tbl_barang_keluar on tbl_barang_keluar.id_atk = tbl_atk.id_atk");
 		$databeranda['tampil_atk']=$this->db->query("select * from tbl_atk");
 		$databeranda['tampil_suplier']=$this->db->query("select * from tbl_suplier");
 		$databeranda['tampil']=$this->db->query("select * from tbl_barang_keluar");
+		$databeranda['cek_stok']=$this->db->query("SELECT tbl_atk.*, tbl_persedian.stok_b FROM tbl_atk LEFT JOIN tbl_persedian ON tbl_atk.id_atk = tbl_persedian.id_atk");
+		$databeranda['tampil_div']=$this->db->query("select * from tbl_bagian where id_bagian ='".$_SESSION['id_bagian']."' ")->result_array();
 		$databeranda['content']='permintaan/v_permintaan';
 		$this->load->view('admin/home',$databeranda);
 	}
@@ -33,12 +35,12 @@ class ControllerPermintaan extends CI_Controller {
 			$trg = $this->input->post("jumlah");
 			$query=$this->db->query("select * from tbl_persedian where id_atk = '".$id."'");
 			$hasil = $query->result_array();
-			//print_r($hasil[0]['stok_b']);die;
+			print_r($hasil[0]['stok_b']);die;
 			if ($hasil[0]['stok_b'] <= $trg ) {
 				$this->session->set_flashdata("notif","<div class='alert alert-success'>Stok Hanya ".$hasil[0]['stok_b']." Tidak Mencukupi.</div>");
 				header('location:'.base_url().'KelolaBarangKeluar');
 			}else{
-			
+			$data['kode_permintaan']=$this->input->post("id_k");
 			$data['id_atk']=$this->input->post("id_atk");
 			$data['nama_peminta']=$this->input->post("nama");
 			$data['bagian']=$this->input->post("bagian");
