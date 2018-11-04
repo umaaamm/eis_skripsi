@@ -18,6 +18,15 @@ echo $this->session->flashdata('notif');
                                             <label>Nama Barang</label>
                                             <input type="text" class="form-control" name="nama" placeholder="Nama" required>
                                         </div>
+                                        <div class="form-group">
+                                            <label>Satuan</label>
+                                            <select class="form-control" name="satuan">
+                                                <option value="-">- Satuan -</option>
+                                                <option value="Dus">Dus</option>
+                                                <option value="Rim">Rim</option>
+                                                <option value="Box">Box</option>
+                                            </select>
+                                        </div>
                                      <!--    <div class="form-group">
                                             <label>Stok Awal Barang</label>
                                             <input type="text" class="form-control" name="stok" placeholder="Stok Barang" >
@@ -48,6 +57,15 @@ echo $this->session->flashdata('notif');
                                         <div class="form-group">
                                             <label>Nama Barang</label>
                                             <input type="text" class="form-control" name="nama" placeholder="Nama Barang" id="nm">
+                                        </div>
+                                         <div class="form-group">
+                                            <label>Satuan</label>
+                                            <select class="form-control" name="satuan" id="sta">
+                                                <option value="-">- Satuan -</option>
+                                                <option value="Dus">Dus</option>
+                                                <option value="Rim">Rim</option>
+                                                <option value="Box">Box</option>
+                                            </select>
                                         </div>
                                        <!--  <div class="form-group">
                                             <label>Stok Awal Barang</label>
@@ -82,7 +100,7 @@ echo $this->session->flashdata('notif');
                                                 <th>No</th>
 											
                                             <th>Nama Barang</th>
-                                             <!-- <th>Stok Awal</th> -->
+                                             <th>Satuan</th>
 											<th>Action</th>
 
                                             </tr>
@@ -95,9 +113,9 @@ echo $this->session->flashdata('notif');
 											<tr>
 											<td><?php echo $a; ?></td>
 											<td><?php echo $key["nama_barang"];?></td>
-                                            <!-- <td><?php echo $key["stok"];?></td> -->
+                                            <td><?php echo $key["satuan"];?></td> 
 											<td><button class="btn btn-danger btn-sm" onclick="hapus('<?php echo $key["id_atk"]; ?>')">Hapus</button>
-                                            <button class="btn btn-info btn-sm" data-toggle="modal" data-target="#mymodal" onclick="edit('<?php echo $key["id_atk"]; ?>','<?php echo $key["nama_barang"]; ?>')">Edit</button> 
+                                            <button class="btn btn-info btn-sm" data-toggle="modal" data-target="#mymodal" onclick="edit('<?php echo $key["id_atk"]; ?>','<?php echo $key["nama_barang"]; ?>','<?php echo $key["satuan"]; ?>')">Edit</button> 
 											</tr>
 										<?php $a++; } ?>
 
@@ -116,10 +134,11 @@ function hapus($id){
 	}
 }
 
-function edit(id,nama){	
+function edit(id,nama,satuan){	
     $('#id').val(id);
 	$('#nm').val(nama);
     $('#st').val(stok);  
+     $('#sta').val(satuan);  
 }
 
 </script>

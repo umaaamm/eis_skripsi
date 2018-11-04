@@ -15,9 +15,9 @@ echo $this->session->flashdata('notif');
                                 <form role="form" action="<?php echo base_url()?>SimpanBarangMasuk" name="autoSumForm" method="post">
                                    
                                     <div class="box-body">
-                                        <!-- <div class="form-group">
+                                        <div class="form-group">
                                             <label>Nama Barang</label>
-                                            <select class="form-control" name="id_atk">
+                                            <select class="form-control" onchange="cek_database()" id="id_atk" name="id_atk">
                                                 <option value="-">-- Nama Barang --</option>
                                               <?php foreach($tampil_atk->result_array() as $keyy)
                                               {
@@ -26,30 +26,9 @@ echo $this->session->flashdata('notif');
                                                     <option value="<?php echo $keyy['id_atk'];?>"><?php echo $keyy['nama_barang'];?></option>
                                                 <?php } ?>
                                             </select>
-                                        </div> -->
-
-
-                                         <div class="form-group">
-                                            <label>Nama Barang</label>
-                                            
-                                                <?php
-                                                    
-                                                    $jsArray = "var prdName = new Array();\n";
-                                                    echo '
-                                                          <select name="id_service" class="form-control" onchange="document.getElementById(\'prd_name\').value = prdName[this.value]">
-                                                   ';
-                                                     foreach ($cek_stok->result_array() as $key => $row) {
-                                                    
-                                                   echo '
-                                                  <option value="' . $row['id_atk'] . '">' . $row['nama_barang'] . '</option>';
-                                                   $jsArray .= "prdName['" . $row['id_atk'] . "'] = '" . addslashes($row['stok_b']) . "';\n";
-                                                     }
-                                                     echo '
-                                                     </select>';
-                                                  ?>
-                                                  
-                                           <!--  </select> -->
                                         </div> 
+
+                                         
 
                                         <div class="form-group">
                                             <label>Nama Supplier</label>
@@ -63,20 +42,37 @@ echo $this->session->flashdata('notif');
                                                 <?php } ?>
                                             </select>
                                         </div>
-                                        <div class="form-group">
+                                         <div class="row form-group">
+                                            <div class="col-xs-6">
                                             <label>Stok Tersedia</label>
-                                            <input type="text" id="prd_name" class="form-control" name="stok_tersedia" id="st" placeholder="Stok Barang Tersedia" onFocus="startCalc();" onBlur="stopCalc();" readonly>
+                                            <input type="text" id="stok_b" class="form-control" name="stok_tersedia" id="st" placeholder="Stok Barang Tersedia" onFocus="startCalc();" onBlur="stopCalc();" readonly>
+                                            </div>
+                                             <div class="col-xs-4">
+                                            <label>Satuan</label>
+                                            <input type="text" class="form-control satuan" placeholder="Satuan" readonly>
+                                            </div>
                                         </div>
-                                        <script type="text/javascript">
-                                                    <?php echo $jsArray; ?>
-                                                    </script>    
-                                        <div class="form-group">
+                                        <!-- -->
+                                        <div class="row form-group">
+                                            <div class="col-xs-6">
                                             <label>Jumlah Barang Masuk</label>
                                             <input type="text" onFocus="startCalc();" onBlur="stopCalc();" class="form-control" name="stok" placeholder="Stok Barang" required>
+                                            </div>
+                                            <div class="col-xs-4">
+                                            <label>Satuan</label>
+                                            <input type="text" class="form-control satuan" placeholder="Satuan" readonly>
+                                            </div>
                                         </div>
-                                        <div class="form-group">
+                                          
+                                        <div class="row">
+                                            <div class="col-xs-6">
                                             <label>Stok Akhir</label>
                                             <input type="text" value='0' onchange='tryNumberFormat(this.form.thirdBox);' class="form-control" name="stok_akhir"  placeholder="Stok Barang" readonly>
+                                            </div>
+                                            <div class="col-xs-4">
+                                            <label>Satuan</label>
+                                            <input type="text" class="form-control satuan"  placeholder="Satuan" readonly>
+                                            </div>
                                         </div>
                                     </div>
    
@@ -226,4 +222,39 @@ function edit(id,id_atk,id_suplier,stok){
 }
 
 </script>
+
+<script type="text/javascript">
+    function cek_database(){
+        var id_atk = $("#id_atk").val();
+        // alert(id_atk);
+        $.ajax({
+            type : 'GET',
+            url: '<?php echo base_url();?>ControllerBarangMasuk/cek',
+            data:"id_atk="+id_atk,
+            // dataType:"json",
+            success:function(data) {
+            var json = data,
+            obj = JSON.parse(json);
+            $('.satuan').val(obj.satuan);
+            // alert(data);
+            $('#stok_b').val(obj.stok_b);
+        },
+        });
+    };
+</script>
+<!-- <script type="text/javascript">
+var getp = function() {
+    $.ajax({
+        type : 'POST',
+        url : '<?php echo base_url();?>ControllerPermintaanBarang/notif_p',
+        dataType:"json",
+        success : function(data){
+            $('.notif_p').html(data.notification);
+            // alert(data.notification);
+            // var refInterval = window.setTimeout('get()', 2000); // 30 seconds
+        },
+    });
+};
+</script>
+ -->
 

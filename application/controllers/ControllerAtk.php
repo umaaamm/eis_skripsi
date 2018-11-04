@@ -28,7 +28,7 @@ class ControllerAtk extends CI_Controller {
 
 	public function simpan(){
 			$data['nama_barang']=$this->input->post("nama");
-			// $data['stok']=$this->input->post("stok");
+			$data['satuan']=$this->input->post("satuan");
 			
 			//print_r($data);die;
 			$this->RsModel->TambahData("tbl_atk",$data);
@@ -48,7 +48,7 @@ class ControllerAtk extends CI_Controller {
 			$where['id_atk']=$this->input->post('id');
 			$data['nama_barang']=$this->input->post("nama");
 			// $data['stok']=$this->input->post("stok");
-			
+			$data['satuan']=$this->input->post("satuan");
 			//print_r($where);die;
 			$this->RsModel->EditData("tbl_atk",$data,$where);
 			$this->session->set_flashdata("notif","<div class='alert alert-success'>Data berhasil diedit</div>");

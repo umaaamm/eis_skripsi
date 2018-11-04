@@ -20,8 +20,8 @@ class ControllerBarangMasuk extends CI_Controller {
 	 */
 	public function index()
 	{
-		$databeranda['hasil_g']=$this->db->query("select tbl_barang_masuk.id_barang_m,tbl_atk.nama_barang,tbl_barang_masuk.id_atk,tbl_barang_masuk.id_suplier, tbl_barang_masuk.stok_t,tbl_barang_masuk.tanggal_masuk, tbl_suplier.nama_suplier
-from tbl_atk inner join tbl_barang_masuk on tbl_barang_masuk.id_atk = tbl_atk.id_atk INNER JOIN tbl_suplier on tbl_barang_masuk.id_suplier = tbl_suplier.id_suplier");
+		$databeranda['hasil_g']=$this->db->query("select tbl_barang_masuk.id_barang_m,tbl_atk.nama_barang,tbl_atk.satuan,tbl_barang_masuk.id_atk,tbl_barang_masuk.id_suplier, tbl_barang_masuk.stok_t,tbl_barang_masuk.tanggal_masuk, tbl_suplier.nama_suplier
+from tbl_atk inner join tbl_barang_masuk on tbl_barang_masuk.id_atk = tbl_atk.id_atk INNER JOIN tbl_suplier on tbl_barang_masuk.id_suplier = tbl_suplier.id_suplier order by tanggal_masuk DESC");
 		$databeranda['tampil_atk']=$this->db->query("select * from tbl_atk");
 		$databeranda['tampil_suplier']=$this->db->query("select * from tbl_suplier");
 		$databeranda['tampil']=$this->db->query("select * from tbl_barang_masuk");
@@ -71,6 +71,22 @@ from tbl_atk inner join tbl_barang_masuk on tbl_barang_masuk.id_atk = tbl_atk.id
 			$this->session->set_flashdata("notif","<div class='alert alert-success'>Data berhasil diedit</div>");
 			header('location:'.base_url().'KelolaBarangMasuk');
 
+	}
+
+	public function cek(){
+		// '".$_GET['id_atk']."'
+		// $d=$this->db->query("select * from tbl_atk where id_atk='".$_GET['id_atk']."' ")->result_array();
+		$d=$this->db->query("SELECT tbl_atk.*, tbl_persedian.stok_b FROM tbl_atk LEFT JOIN tbl_persedian ON tbl_atk.id_atk = tbl_persedian.id_atk where tbl_atk.id_atk='".$_GET['id_atk']."' ")->result_array();
+		// $data = array();
+		// foreach ($d as $key => $value) {
+		// 	array_push($data, $value['satuan']);
+		// }
+		// print_r($d);die;
+		$data = array(
+		   'satuan' => $d['0']['satuan'],
+		   'stok_b' => $d['0']['stok_b']
+		);
+		echo json_encode($data);
 	}
 
 }

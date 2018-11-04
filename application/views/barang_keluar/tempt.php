@@ -112,3 +112,33 @@
             </div>
         </div>                           
                         </div><!--/.col (left) -->
+
+
+
+
+
+
+
+                        <div class="form-group">
+                                            <label>Nama Barang</label>
+                                            
+                                                <?php
+                                                    
+                                                    $jsArray = "var prdName = new Array();\n";
+                                                   
+                                                    echo '
+                                                          <select name="id_atk" class="form-control" onchange="document.getElementById(\'prd_name\').value = prdName[this.value]">
+                                                   ';
+                                                     foreach ($cek_stok->result_array() as $key => $row) {
+                                                    
+                                                   echo '
+                                                  <option value="' . $row['id_atk'] . '">' . $row['nama_barang'] . '</option>';
+                                                   $jsArray .= "prdName['" . $row['id_atk'] . "'] = '" . addslashes($row['stok_b']) . "';\n";
+                                                   
+                                                     }
+                                                     echo '
+                                                     </select>';
+                                                  ?>
+                                                  
+                                           <!--  </select> -->
+                                        </div> 

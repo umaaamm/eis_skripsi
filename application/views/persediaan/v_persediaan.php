@@ -14,7 +14,7 @@ echo $this->session->flashdata('notif');
                                 <form role="form" action="<?php echo base_url()?>SimpanPersediaan" method="post">
                                    
                                     <div class="box-body">
-                                         <div class="form-group">
+                                         <!-- <div class="form-group">
                                             <label>Nama Barang</label>
                                             <select class="form-control" name="id_atk">
                                                 <option value="-">-- Nama Barang --</option>
@@ -24,12 +24,60 @@ echo $this->session->flashdata('notif');
                                                     <option value="<?php echo $keyy['id_atk'];?>"><?php echo $keyy['nama_barang'];?></option>
                                                 <?php } ?>
                                             </select>
-                                        </div>
-                                        <div class="form-group">
-                                            <label>Stok</label>
+                                        </div> -->
+                                         
+                                      <!--   <div class="form-group">
+                                           <label>Stok</label>
+                                            <div class="col-xs-3">
                                             <input type="text" class="form-control" name="stok" placeholder="Stok Barang" required>
                                         </div>
-                                       
+                                            <div class="col-xs-4">
+                                              <input type="text" class="form-control" placeholder=".col-xs-4">
+                                            </div>
+                                        </div> -->
+                                        <div class="form-group">
+                                            <label>Nama Barang</label>
+                                            
+                                                <?php
+                                                // print_r($tampil_atk);die;
+                                                    
+                                                    $jsArray = "var prdName = new Array();\n";
+                                                   
+                                                    echo '
+                                                          <select name="id_atk" class="form-control" onchange="document.getElementById(\'prd_name\').value = prdName[this.value]">
+                                                   ';
+                                                     foreach ($tampil_atk->result_array() as $key => $row) {
+                                                    
+                                                   echo '
+                                                  <option value="' . $row['id_atk'] . '">' . $row['nama_barang'] . '</option>';
+                                                   $jsArray .= "prdName['" . $row['id_atk'] . "'] = '" . addslashes($row['satuan']) . "';\n";
+                                                   
+                                                     }
+                                                     echo '
+                                                     </select>';
+                                                  ?>
+                                                  
+                                           <!--  </select> -->
+                                        </div> 
+                                            
+            <div class="row">
+                <div class="col-xs-4">
+                    <label>Stok</label>
+                  <input type="text" name="stok" class="form-control" placeholder="Stok Barang" required>
+                </div>
+                <div class="col-xs-4">
+                    <label>Satuan</label>
+                  <input type="text" class="form-control" id="prd_name" placeholder="Satuan" readonly>
+                </div>
+                 <script type="text/javascript">
+                                                    <?php echo $jsArray; ?>
+
+                                                    </script>  
+                <!-- <div class="col-xs-5">
+                  <input type="text" class="form-control" placeholder=".col-xs-5">
+                </div> -->
+              </div>
+               
                                         
                                         
                                     </div>
