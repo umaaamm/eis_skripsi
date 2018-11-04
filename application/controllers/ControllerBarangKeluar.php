@@ -20,7 +20,8 @@ class ControllerBarangKeluar extends CI_Controller {
 	 */
 	public function index()
 	{
-		$databeranda['hasil_g']=$this->db->query("select tbl_barang_keluar.kode_permintaan,tbl_atk.nama_barang,tbl_barang_keluar.id_atk,tbl_barang_keluar.nama_peminta,tbl_barang_keluar.bagian,tbl_barang_keluar.jumlah,tbl_barang_keluar.tanggal_keluar,tbl_barang_keluar.id_barang_keluar from tbl_atk inner join tbl_barang_keluar on tbl_barang_keluar.id_atk = tbl_atk.id_atk");
+		$databeranda['hasil_g']=$this->db->query("select tbl_atk.nama_barang,tbl_barang_keluar.kode_permintaan,tbl_barang_keluar.id_atk,tbl_barang_keluar.nama_peminta,tbl_barang_keluar.bagian,tbl_barang_keluar.jumlah,tbl_barang_keluar.tanggal_keluar,tbl_barang_keluar.id_barang_keluar from tbl_atk inner join tbl_barang_keluar on tbl_barang_keluar.id_atk = tbl_atk.id_atk group by tbl_barang_keluar.id_atk");
+		$databeranda['hasil_k']=$this->db->query("SELECT DISTINCT(tbl_barang_keluar.id_atk),tbl_atk.nama_barang from tbl_barang_keluar LEFT JOIN tbl_atk on tbl_barang_keluar.id_atk = tbl_atk.id_atk");
 		$databeranda['tampil_atk']=$this->db->query("select * from tbl_atk");
 		$databeranda['tampil_suplier']=$this->db->query("select * from tbl_suplier");
 		$databeranda['tampil']=$this->db->query("select * from tbl_barang_keluar");
@@ -71,6 +72,65 @@ class ControllerBarangKeluar extends CI_Controller {
 			$this->session->set_flashdata("notif","<div class='alert alert-success'>Data berhasil diedit</div>");
 			header('location:'.base_url().'KelolaBarangKeluar');
 
+	}
+
+	public function detail(){
+		
+		$ab=$this->db->query("select tbl_atk.nama_barang,tbl_barang_keluar.kode_permintaan,tbl_barang_keluar.id_atk,tbl_barang_keluar.nama_peminta,tbl_barang_keluar.bagian,tbl_barang_keluar.jumlah,tbl_barang_keluar.tanggal_keluar,tbl_barang_keluar.id_barang_keluar from tbl_atk inner join tbl_barang_keluar on tbl_barang_keluar.id_atk = tbl_atk.id_atk where tbl_barang_keluar.id_atk ='".$_GET['id_atk']."'");
+		 // print_r($ab);
+		echo '<div class="box box-primary">
+                                <div class="box-header">
+                                    <h3 class="box-title">Detail Data Barang Keluar/Permintaan</h3>
+                                </div>
+                                <div class="box-body">
+                                    <table id="l1" class="table table-bordered table-striped">
+                                         <thead>
+                                            <tr>
+                                                <th>No</th>
+                                             <th>Kode Permintaan</th>
+                                            <th>Nama Barang</th>
+                                             <th>Nama</th>
+                                              <th>Bagian</th>
+                                            <th>Jumlah</th>
+                                            <th>Tanggal Keluar</th>
+                                           
+
+                                            </tr>
+                                        </thead>';
+                                        
+                                            
+                                                $a=1;
+                                               foreach ($ab->result_array() as $key) { 
+                                           
+                                     echo" <tr>
+                                            <td>".$a."</td>
+                                            <td>".$key['kode_permintaan']."</td>
+                                            <td>".$key["nama_barang"]."</td>
+                                            <td>".$key["nama_peminta"]."</td> 
+                                            <td>".$key["bagian"]."</td>
+                                            <td>".$key["jumlah"]."</td> 
+                                            <td>".$key["tanggal_keluar"]."</td> 
+                                            </tr>";
+                                        $a++;
+                                          }
+
+                                   echo '</table>
+                                </div>
+                            </div>
+                    </div>
+                </div>
+            </div>
+            ';
+            echo "<script type='text/javascript'>
+            	$(document).ready(function() {
+                    $('#l1').DataTable( {
+                        dom: 'Bfrtip',
+                        buttons: [
+                            'copy', 'csv', 'excel', 'pdf', 'print'
+                        ]
+                    } );
+                } );
+                </script>";
 	}
 
 }

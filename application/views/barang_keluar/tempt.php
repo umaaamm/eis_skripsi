@@ -142,3 +142,121 @@
                                                   
                                            <!--  </select> -->
                                         </div> 
+
+
+                                        SELECT DISTINCT(tbl_barang_keluar.id_atk),tbl_atk.nama_barang from tbl_barang_keluar LEFT JOIN tbl_atk on tbl_barang_keluar.id_atk = tbl_atk.id_atk
+
+
+
+
+
+                                                  <!-- right column -->
+                        <div class="col-md-12">
+                            <!-- general form elements disabled -->
+                            <div class="box box-primary">
+                                <div class="box-header">
+                                    <h3 class="box-title">Kelola Data Barang Keluar/Permintaan</h3>
+                                </div><!-- /.box-header -->
+                                <div class="box-body">
+                                    <table id="Admin" class="table table-bordered table-striped">
+                                         <thead>
+                                            <tr>
+                                                <th>No</th>
+                                             <th>Kode Permintaan</th>
+                                            <th>Nama Barang</th>
+                                             <th>Nama</th>
+                                              <th>Bagian</th>
+                                            <th>Jumlah</th>
+                                            <th>Tanggal Keluar</th>
+                                            <!-- <th>Action</th> -->
+
+                                            </tr>
+                                        </thead>
+                                        
+                                            <?php
+                                                $a=1;
+                                                foreach ($hasil_g->result_array() as $key) {
+                                            ?>
+                                            <tr>
+                                            <td><?php echo $a; ?></td>
+                                            <td><?php echo $key["kode_permintaan"];?></td>
+                                            <td><?php echo $key["nama_barang"];?></td>
+                                            <td><?php echo $key["nama_peminta"];?></td> 
+                                            <td><?php echo $key["bagian"];?></td>
+                                            <td><?php echo $key["jumlah"];?></td> 
+                                            <td><?php echo $key["tanggal_keluar"];?></td> 
+                                            <!-- <td><button class="btn btn-danger btn-sm" onclick="hapus('<?php echo $key["id_barang_keluar"]; ?>')">Hapus</button>
+                                            <button class="btn btn-info btn-sm" data-toggle="modal" data-target="#mymodal" onclick="edit('<?php echo $key["id_barang_keluar"]; ?>','<?php echo $key["id_atk"]; ?>','<?php echo $key["nama_peminta"]; ?>','<?php echo $key["bagian"]; ?>','<?php echo $key["jumlah"]; ?>')">Edit</button>  -->
+                                            </tr>
+                                        <?php $a++; } ?>
+
+                                    </table>
+                                </div><!-- /.box-body -->
+                            </div><!-- /.box -->
+
+
+</div>
+
+
+
+
+<div class="modal fade bs-example-modal-lg" id="mymodal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+            <div class="modal-dialog modal-lg">
+                <div class="modal-content">
+                    <div class="modal-header">
+                        <button type="button" class="close" data-dismiss="modal"><span aria-hidden="true">&times;</span><span class="sr-only">Close</span></button>
+                        <h4 class="modal-title" id="myModalLabel">Detail Kelola Data Barang Keluar/Permintaan</h4>
+                    </div>
+                    <div class="modal-body">
+                    <div class="box-body">
+                                
+                        <div class="box box-primary">
+                                <div class="box-header">
+                                    <h3 class="box-title">Detail Data Barang Keluar/Permintaan</h3>
+                                </div><!-- /.box-header -->
+                                <div class="box-body">
+                                    <table id="l1" class="table table-bordered table-striped">
+                                         <thead>
+                                            <tr>
+                                                <th>No</th>
+                                             <th>Kode Permintaan</th>
+                                            <th>Nama Barang</th>
+                                             <th>Nama</th>
+                                              <th>Bagian</th>
+                                            <th>Jumlah</th>
+                                            <th>Tanggal Keluar</th>
+                                            <!-- <th>Action</th> -->
+
+                                            </tr>
+                                        </thead>
+                                        
+                                            <?php
+                                                $a=1;
+                                                foreach ($hasil_g->result_array() as $key) {
+                                            ?>
+                                            <tr>
+                                            <td><?php echo $a; ?></td>
+                                            <td><?php echo $key["kode_permintaan"];?></td>
+                                            <td><?php echo $key["nama_barang"];?></td>
+                                            <td><?php echo $key["nama_peminta"];?></td> 
+                                            <td><?php echo $key["bagian"];?></td>
+                                            <td><?php echo $key["jumlah"];?></td> 
+                                            <td><?php echo $key["tanggal_keluar"];?></td> 
+                                            <!-- <td><button class="btn btn-danger btn-sm" onclick="hapus('<?php echo $key["id_barang_keluar"]; ?>')">Hapus</button>
+                                            <button class="btn btn-info btn-sm" data-toggle="modal" data-target="#mymodal" onclick="edit('<?php echo $key["id_barang_keluar"]; ?>','<?php echo $key["id_atk"]; ?>','<?php echo $key["nama_peminta"]; ?>','<?php echo $key["bagian"]; ?>','<?php echo $key["jumlah"]; ?>')">Edit</button>  -->
+                                            </tr>
+                                        <?php $a++; } ?>
+
+                                    </table>
+                                </div><!-- /.box-body -->
+                            </div>
+
+
+                    </div>
+                    <div class="modal-footer">
+                        <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+                      </div>
+                </div>
+            </div>
+        </div>                           
+                        </div><!--/.col (left) -->
