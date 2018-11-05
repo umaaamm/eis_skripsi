@@ -162,7 +162,7 @@ echo $this->session->flashdata('notif_l');
 ?>
 </div>
           <?php
-
+                //pingwkowkowk
                 $this->load->view($content);
         ?>
      </div>

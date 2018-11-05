@@ -32,7 +32,7 @@ if ($tampil_div['0']['divisi']=='operasional') {
                                         </div>
                                         <div class="form-group">
                                             <label>Nama Peminta</label>
-                                            <input type="text" value="<?php echo $_SESSION['nama'] ?>" class="form-control" name="nama" placeholder="Nama Peminta Barang" required readonly>
+                                            <input type="text" class="form-control" name="nama" placeholder="Nama Peminta Barang" required>
                                         </div>
                                         <!-- <div class="form-group">
                                             <label>Nama Barang</label>
